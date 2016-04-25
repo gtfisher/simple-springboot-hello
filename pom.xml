@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.russmiles.antifragilesoftware.samples</groupId>
-	<artifactId>hello</artifactId>
+	<artifactId>spring-boot-hello</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -41,6 +41,38 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.cloudfoundry</groupId>
+				<artifactId>cf-maven-plugin</artifactId>
+				<version>1.1.2</version>
+				<configuration>
+					<server>pivotal-cloud-foundry</server>
+					<target>https://api.run.pivotal.io</target>
+					<space>development</space>
+					<appname>spring-boot-hello</appname>
+					<url>spring-boot-hello.cfapps.io</url>
+					<memory>512</memory>
+					<instances>1</instances>
+                    <org>rma-grant-org</org>
+
+
+					<env>
+						<greeting>Hello</greeting>
+					</env>
+
+					<!--<services>-->
+						<!--<service>-->
+							<!--<name>app-db</name>-->
+							<!--<label>elephantsql</label>-->
+							<!--<provider>elephantsql</provider>-->
+							<!--<version>n/a</version>-->
+							<!--<plan>turtle</plan>-->
+						<!--</service>-->
+					<!--</services>-->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
